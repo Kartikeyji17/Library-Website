@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Books Collection</title>
+  <link rel="stylesheet" href="book.css">
+</head>
+<body>
+
+  <header>
+    <h1 style="color: white;">Your's Library</h1>
+    <p>Enhance focus and productivity with timed study sessions</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="book.html">Books</a>
+    <a href="https://ndl.iitkgp.ac.in/">Resources</a>
+    <a href='about.html'>About Us</a>
+  </nav>
+
+  <h1>Our Books Collection</h1>
+
+  <!-- Search Bar & Sorting Dropdown (Side by Side) -->
+<div class="search-sort-container">
+  <input type="text" id="searchBar" placeholder="Search for a book..." onkeyup="searchBooks()">
+  
+  <select id="sortOptions" onchange="sortBooks()">
+      <option value="default">Sort By</option>
+      <option value="title-asc">Title (A-Z)</option>
+      <option value="title-desc">Title (Z-A)</option>
+      <option value="author-asc">Author (A-Z)</option>
+      <option value="author-desc">Author (Z-A)</option>
+      <option value="price-low">Price (Low to High)</option>
+      <option value="price-high">Price (High to Low)</option>
+  </select>
+</div>
+
+  
+  <!-- Indian Books Section -->
+  <div class="book-section">
+    <h2>Indian Books</h2>
+    <div class="book-container">
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/91odtfOhJ-L._AC_UY436_FMwebp_QL65_.jpg" alt="Ramayan">
+        <div class="book-title">Ramayan</div>
+        <div class="book-author">Valmiki</div>
+        <div class="book-price">₹899</div>
+        <a href="#">Buy Now</a>
+        <a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/816mUSrIprL._AC_UL640_FMwebp_QL65_.jpg" alt="Mahabharat">
+        <div class="book-title">Mahabharat</div>
+        <div class="book-author">Vyasa</div>
+        <div class="book-price">₹950</div>
+        <a href="#">Buy Now</a>
+        <a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/71My1M0AgZL._AC_UY436_FMwebp_QL65_.jpg" alt="Panchtantra">
+        <div class="book-title">Panchtantra</div>
+        <div class="book-author">Vishnu Sharma</div>
+        <div class="book-price">₹650</div>
+        <a href="#">Buy Now</a>
+        <a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/91msEbTletL._AC_UY436_FMwebp_QL65_.jpg" alt="Bhagavad Gita">
+        <div class="book-title">Bhagavad Gita</div>
+        <div class="book-author">Lord Krishna</div>
+        <div class="book-price">₹399</div>
+        <a href="#">Buy Now</a>
+        <a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/71yQBUcNMRL._AC_UY436_FMwebp_QL65_.jpg" alt="Upanishads">
+        <div class="book-title">Upanishads</div>
+        <div class="book-author">Various</div>
+        <div class="book-price">₹799</div>
+        <a href="#">Buy Now</a>
+        <a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- History Books Section -->
+  <div class="book-section">
+    <h2>History Books</h2>
+    <div class="book-container">
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/9106a5-yIaL._AC_UY436_FMwebp_QL65_.jpg" alt="India Before Independence">
+        <div class="book-title">India Before Independence</div>
+        <div class="book-author">Durba Sen</div>
+        <div class="book-price">₹850</div>
+        <a href="#">Buy Now</a>
+        <a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/51s-8MBPuPL._AC_UY436_FMwebp_QL65_.jpg" alt="Discovery of India">
+        <div class="book-title">Discovery of India</div>
+        <div class="book-author">Jawaharlal Nehru</div>
+        <div class="book-price">₹999</div>
+        <a href="#">Buy Now</a>
+        <a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/81MqA6xAE8L._AC_UY436_FMwebp_QL65_.jpg" alt="The Indian Mutiny">
+        <div class="book-title">The Indian Mutiny</div>
+        <div class="book-author">V.D. Savarkar</div>
+        <div class="book-price">₹700</div>
+        <a href="#">Buy Now</a>
+        <a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/81rnFo+X3yL._AC_UY436_FMwebp_QL65_.jpg" alt="Modern India">
+        <div class="book-title">Modern India</div>
+        <div class="book-author">Sumit Sarkar</div>
+        <div class="book-price">₹799</div>
+        <a href="#">Buy Now</a>
+        <a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/71QV6g38FdL._AC_UY436_FMwebp_QL65_.jpg" alt="Ancient India">
+        <div class="book-title">Ancient India</div>
+        <div class="book-author">R.C. Majumdar</div>
+        <div class="book-price">₹699</div>
+        <a href="#">Buy Now</a>
+        <a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Science Books Section -->
+  <div class="book-section">
+    <h2>Science Books</h2>
+    <div class="book-container">
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/81fe4QYRQ+L._AC_UY436_FMwebp_QL65_.jpg" alt="Physics Textbook">
+        <div class="book-title">Physics Textbook</div>
+        <div class="book-author">D.C. Pandey</div>
+        <div class="book-price">₹999</div>
+        <a href="#">Buy Now</a>
+        <a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/81bt-NBXouL._AC_UY436_FMwebp_QL65_.jpg" alt="Chemistry Textbook">
+        <div class="book-title">Chemistry Textbook</div>
+        <div class="book-author">J.D. Lee</div>
+        <div class="book-price">₹850</div>
+        <a href="#">Buy Now</a>
+        <a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/51GXhGTasFL._AC_UY436_FMwebp_QL65_.jpg" alt="Botany Basics">
+        <div class="book-title">Botany Basics</div>
+        <div class="book-author">P.K. Gupta</div>
+        <div class="book-price">₹799</div>
+        <a href="#">Buy Now</a>
+        <a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/71NBt1HK9RL._AC_UY436_FMwebp_QL65_.jpg" alt="Zoology Textbook">
+        <div class="book-title">Zoology Textbook</div>
+        <div class="book-author">M.P. Tyagi</div>
+        <div class="book-price">₹950</div>
+        <a href="#">Buy Now</a>
+        <a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/61Rpn2Fo3yL._AC_UY436_FMwebp_QL65_.jpg" alt="Geography of India">
+        <div class="book-title">Geography of India</div>
+        <div class="book-author">Majid Husain</div>
+        <div class="book-price">₹799</div>
+        <a href="#">Buy Now</a>
+        <a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Kids Books Section -->
+  <div class="book-section">
+    <h2>Kids Books</h2>
+    <div class="book-container">
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/717XZcyYuiL._AC_UY436_FMwebp_QL65_.jpg" alt="Amar Chitra Katha">
+        <div class="book-title">Amar Chitra Katha</div>
+        <div class="book-author">Various Authors</div>
+        <div class="book-price">₹350</div>
+        <a href="#">Buy Now</a>
+        <a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/71n+cE12fTL._AC_UY436_FMwebp_QL65_.jpg" alt="Chandamama">
+        <div class="book-title">Chandamama</div>
+        <div class="book-author">Various Authors</div>
+        <div class="book-price">₹299</div>
+        <a href="#">Buy Now</a>
+        <a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/81EIFBObjoL._AC_UY436_FMwebp_QL65_.jpg" alt="Time Trap">
+        <div class="book-title">Time Trap</div>
+        <div class="book-author">Micah Caida</div>
+        <div class="book-price">₹499</div>
+        <a href="#">Buy Now</a>
+        <a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/818umIdoruL._AC_UY436_FMwebp_QL65_.jpg" alt="My First Science Book">
+        <div class="book-title">My First Science Book</div>
+        <div class="book-author">J.K. Rowling</div>
+        <div class="book-price">₹450</div>
+        <a href="#">Buy Now</a>
+        <a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/71s4dgdxmtL._AC_UY436_FMwebp_QL65_.jpg" alt="Patanjali Yogsutra">
+        <div class="book-title">Patanjali Yogsutra</div>
+        <div class="book-author">Various Authors</div>
+        <div class="book-price">₹399</div>
+        <a href="#">Buy Now</a>
+        <a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-note">
+      Made with &#x2665 from Kartikey
+      <p>&copy; 2024 Your's Library. All Rights Reserved. | Designed and Developed by Kartikey Chaturvedi</p>
+      <p>
+        Follow us on:
+        <a href="https://github.com/yourgithubusername" target="_blank"><img src="githubicon.png" alt="GitHub"></a> |
+        <a href="https://instagram.com/yourinstagramusername" target="_blank">
+          <img src="Instagram_icon.png" alt="Instagram"></a> |
+        <a href="mailto:yourgmailaddress@gmail.com" target="_blank"><img src="gmailicon.png" alt="Gmail"></a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Cart Icon -->
+  <div id="cart-icon">
+    <img src="cart_icon.png" alt="Cart">
+    <div id="cart-count">0</div>
+  </div>
+
+  <script>
+
+function searchBooks() {
+    let input = document.getElementById("searchBar").value.toLowerCase().trim();
+    let books = document.querySelectorAll(".book");
+    let noResults = true;
+
+    books.forEach(book => {
+        let title = book.querySelector(".book-title").textContent.toLowerCase();
+        let author = book.querySelector(".book-author").textContent.toLowerCase();
+
+        if (title.includes(input) || author.includes(input)) {
+            book.style.display = "block";
+            noResults = false;
+        } else {
+            book.style.display = "none";
+        }
+    });
+
+    if (noResults) {
+        alert("No books found!"); // Optional alert
+    }
+}
+
+function sortBooks() {
+    let sortType = document.getElementById("sortOptions").value;
+    let bookContainers = document.querySelectorAll(".book-container");
+
+    bookContainers.forEach(container => {
+        let books = Array.from(container.getElementsByClassName("book"));
+
+        books.sort((a, b) => {
+            let titleA = a.querySelector(".book-title").textContent.toLowerCase();
+            let titleB = b.querySelector(".book-title").textContent.toLowerCase();
+            let authorA = a.querySelector(".book-author").textContent.toLowerCase();
+            let authorB = b.querySelector(".book-author").textContent.toLowerCase();
+            let priceA = parseFloat(a.querySelector(".book-price").textContent.replace("₹", ""));
+            let priceB = parseFloat(b.querySelector(".book-price").textContent.replace("₹", ""));
+
+            switch (sortType) {
+                case "title-asc": return titleA.localeCompare(titleB);
+                case "title-desc": return titleB.localeCompare(titleA);
+                case "author-asc": return authorA.localeCompare(authorB);
+                case "author-desc": return authorB.localeCompare(authorA);
+                case "price-low": return priceA - priceB;
+                case "price-high": return priceB - priceA;
+                default: return 0;
+            }
+        });
+
+        books.forEach(book => container.appendChild(book)); // Reorder books
+    });
+}
+
+    let cartCount = 0;
+    const cartCountElement = document.getElementById('cart-count');
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        const bookElement = button.parentElement;
+        const title = bookElement.querySelector('.book-title').textContent;
+        const author = bookElement.querySelector('.book-author').textContent;
+        const price = parseFloat(bookElement.querySelector('.book-price').textContent.replace('₹', ''));
+        addToCart({ title, author, price });
+        cartCount++;
+        cartCountElement.textContent = cartCount;
+      });
+    });
+
+    const cartIcon = document.getElementById('cart-icon');
+    cartIcon.addEventListener('click', () => {
+      window.location.href = 'order.html';
+    });
+
+    function addToCart(book) {
+        let totalPrice = parseFloat(localStorage.getItem('totalPrice')) || 0;
+        let totalItems = parseInt(localStorage.getItem('totalItems')) || 0;
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+        const existingBook = cartItems.find(item => item.title === book.title);
+        if (existingBook) {
+            existingBook.quantity += 1;
+        } else {
+            book.quantity = 1;
+            cartItems.push(book);
+        }
+
+        totalPrice += book.price;
+        totalItems += 1;
+
+        localStorage.setItem('totalPrice', totalPrice.toFixed(2));
+        localStorage.setItem('totalItems', totalItems);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+        alert('Book added to cart!');
+    }
+  </script>
+
+</body>
+</html>

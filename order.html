@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Form</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="order.css">
+</head>
+<body>
+    <header>
+        <h1>Your's Library</h1>
+        <p>Enhance focus and productivity with timed study sessions</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="book.html">Books</a>
+        <a href="https://ndl.iitkgp.ac.in/">Resources</a>
+        <a href="about.html">About Us</a>
+    </nav>
+
+    <main>
+        <div class="content-wrapper">
+            <section id="d2">
+                <div id="d3"><h2>Order Form</h2></div>
+                <br><br>
+                <form id="order-form" action="/submit_order" method="post">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">DOB:</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <textarea id="address" name="address" rows="4" cols="50" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="total_price">Total Price of Books:</label>
+                        <input type="number" id="total_price" name="total_price" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="total_items">Total Number of Items:</label>
+                        <input type="number" id="total_items" name="total_items" required>
+                    </div>
+                    <center><input type="submit" value="Submit"></center>
+                </form>
+            </section>
+
+            <section id="cart-details">
+                <h2>Cart Details</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Author</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-items"></tbody>
+                </table>
+                <center><a href="book.html" class="more-books-button"> Add More Books!!</a></center>
+            </section>
+        </div>
+
+        <section id="faq">
+            <center><h2>Frequently Asked Questions</h2></center>
+            <div class="faq-item">
+                <h3>How do I place an order?</h3>
+                <p>To place an order, fill out the order form with your details and click the submit button.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What payment methods are accepted?</h3>
+                <p>We accept various payment methods including credit/debit cards and online banking.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How can I track my order?</h3>
+                <p>Once your order is shipped, you will receive a tracking number via email.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I cancel or modify my order?</h3>
+                <p>Yes, you can cancel or modify your order within 24 hours of placing it by contacting our support team.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-note">
+          Made with &#x2665 from Kartikey
+          <p>&copy; 2024 Your's Library. All Rights Reserved. | Designed and Developed by Kartikey Chaturvedi</p>
+          <p>
+            Follow us on:
+            <a href="https://github.com/yourgithubusername" target="_blank"><img src="githubicon.png" alt="GitHub"></a> |
+            <a href="https://instagram.com/yourinstagramusername" target="_blank">
+              <img src="Instagram_icon.png" alt="Instagram"></a> |
+            <a href="mailto:yourgmailaddress@gmail.com" target="_blank"><img src="gmailicon.png" alt="Gmail"></a>
+          </p>
+        </div>
+      </footer>
+
+    <script>
+        // Assuming you store the total price and total items in localStorage from book.html
+        document.getElementById('total_price').value = localStorage.getItem('totalPrice') || 0;
+        document.getElementById('total_items').value = localStorage.getItem('totalItems') || 0;
+
+        // Display cart items
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+        cartItems.forEach(item => {
+            const cartItemElement = document.createElement('tr');
+            cartItemElement.className = 'cart-item';
+            cartItemElement.innerHTML = `
+                <td>${item.title}</td>
+                <td>${item.author}</td>
+                <td>₹${item.price}</td>
+                <td class="quantity-selector">
+                    <button class="decrease-qty" data-title="${item.title}">-</button>
+                    <input type="number" value="${item.quantity}" min="1" data-title="${item.title}" readonly>
+                    <button class="increase-qty" data-title="${item.title}">+</button>
+                </td>
+            `;
+            cartItemsContainer.appendChild(cartItemElement);
+        });
+
+        // Update quantity and total price in localStorage and order form when changed
+        document.querySelectorAll('.increase-qty').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const title = event.target.getAttribute('data-title');
+                const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                const item = cartItems.find(item => item.title === title);
+                if (item) {
+                    item.quantity += 1;
+                    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                    updateOrderForm();
+                    updateCartDisplay();
+                }
+            });
+        });
+
+        document.querySelectorAll('.decrease-qty').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const title = event.target.getAttribute('data-title');
+                const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                const item = cartItems.find(item => item.title === title);
+                if (item && item.quantity > 1) {
+                    item.quantity -= 1;
+                    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                    updateOrderForm();
+                    updateCartDisplay();
+                }
+            });
+        });
+
+        function updateOrderForm() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            let totalPrice = 0;
+            let totalItems = 0;
+
+            cartItems.forEach(item => {
+                totalPrice += item.price * item.quantity;
+                totalItems += item.quantity;
+            });
+
+            document.getElementById('total_price').value = totalPrice.toFixed(2);
+            document.getElementById('total_items').value = totalItems;
+            localStorage.setItem('totalPrice', totalPrice.toFixed(2));
+            localStorage.setItem('totalItems', totalItems);
+        }
+
+        function updateCartDisplay() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            cartItemsContainer.innerHTML = '';
+
+            cartItems.forEach(item => {
+                const cartItemElement = document.createElement('tr');
+                cartItemElement.className = 'cart-item';
+                cartItemElement.innerHTML = `
+                    <td>${item.title}</td>
+                    <td>${item.author}</td>
+                    <td>₹${item.price}</td>
+                    <td class="quantity-selector">
+                        <button class="decrease-qty" data-title="${item.title}">-</button>
+                        <input type="number" value="${item.quantity}" min="1" data-title="${item.title}" readonly>
+                        <button class="increase-qty" data-title="${item.title}">+</button>
+                    </td>
+                `;
+                cartItemsContainer.appendChild(cartItemElement);
+            });
+
+            // Reattach event listeners
+            document.querySelectorAll('.increase-qty').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const title = event.target.getAttribute('data-title');
+                    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                    const item = cartItems.find(item => item.title === title);
+                    if (item) {
+                        item.quantity += 1;
+                        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                        updateOrderForm();
+                        updateCartDisplay();
+                    }
+                });
+            });
+
+            document.querySelectorAll('.decrease-qty').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const title = event.target.getAttribute('data-title');
+                    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                    const item = cartItems.find(item => item.title === title);
+                    if (item && item.quantity > 1) {
+                        item.quantity -= 1;
+                        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                        updateOrderForm();
+                        updateCartDisplay();
+                    }
+                });
+            });
+        }
+
+        // Initial update of order form
+        updateOrderForm();
+
+        // Handle form submission
+        document.getElementById('order-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Display success message
+            alert('Your order has been successfully submitted! Thank you for visiting.');
+
+            // Reset form values
+            this.reset();
+
+            // Clear localStorage values
+            localStorage.removeItem('totalPrice');
+            localStorage.removeItem('totalItems');
+            localStorage.removeItem('cartItems');
+
+            // Reset total price and total items fields
+            document.getElementById('total_price').value = 0;
+            document.getElementById('total_items').value = 0;
+
+            // Clear cart items display
+            cartItemsContainer.innerHTML = '';
+        });
+    </script>
+</body>
+</html>

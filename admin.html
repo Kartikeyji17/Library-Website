@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Your's Library</title>
+  <link rel="stylesheet" href="index.css">
+  <style>
+    .admin-container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    .admin-header { display: flex; align-items: center; justify-content: space-between; }
+    .admin-controls { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+    .admin-controls input { padding: 8px; border: 1px solid #ccc; border-radius: 6px; min-width: 250px; }
+    .admin-controls button { padding: 8px 14px; background: #7c1604; color: #fff; border: 0; border-radius: 6px; cursor: pointer; }
+
+    .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 20px 0; }
+    .metric-card { background: #fff; border-radius: 10px; padding: 16px; box-shadow: 0 4px 8px rgba(0,0,0,.08); text-align: left; }
+    .metric-title { font-size: 0.9rem; color: #666; margin-bottom: 6px; }
+    .metric-value { font-size: 1.6rem; font-weight: bold; color: #111; }
+
+    .panel { background: #fff; border-radius: 10px; padding: 16px; box-shadow: 0 4px 8px rgba(0,0,0,.08); margin-bottom: 16px; }
+    .panel h3 { margin-top: 0; color: #7c1604; }
+
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 10px; border-bottom: 1px solid #eee; text-align: left; }
+    th { background: #fafafa; }
+    .status { padding: 4px 8px; border-radius: 999px; font-size: 12px; background: #f1f1f1; }
+    .action { display: flex; gap: 8px; align-items: center; }
+    .action select { padding: 6px; }
+
+    .error { color: #b00020; font-weight: 600; }
+
+    @media (max-width: 900px) {
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 520px) {
+      .metrics-grid { grid-template-columns: 1fr; }
+    }
+
+    body.dark-mode .metric-card, body.dark-mode .panel { background: #2a2a2a; color: #fff; border: 1px solid #555; }
+    body.dark-mode th { background: #333; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="admin-container admin-header">
+      <div>
+        <h1>Admin Dashboard</h1>
+        <p>Analytics and Orders overview</p>
+      </div>
+      <div>
+        <a href="index.html" class="btn" style="background:#fff;color:#7c1604;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:600">← Back to site</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-container">
+    <div class="admin-controls panel">
+      <input id="apiBaseUrl" placeholder="API Base URL (e.g. /api or http://localhost:3000/api)">
+      <input id="authToken" placeholder="Admin Bearer Token (optional)" type="password">
+      <button id="saveSettings">Save</button>
+      <span id="settingsSaved" style="display:none;color:green;font-weight:600">Saved ✓</span>
+    </div>
+
+    <section class="metrics-grid" id="metrics">
+      <div class="metric-card">
+        <div class="metric-title">Page Views</div>
+        <div class="metric-value" id="m_pageViews">—</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-title">Unique Visitors</div>
+        <div class="metric-value" id="m_uniqueVisitors">—</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-title">Sessions</div>
+        <div class="metric-value" id="m_sessions">—</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-title">Conversions</div>
+        <div class="metric-value" id="m_conversions">—</div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h3>Real‑time</h3>
+      <div style="display:flex;gap:20px;flex-wrap:wrap">
+        <div class="metric-card" style="flex:1">
+          <div class="metric-title">Active Users (5m)</div>
+          <div class="metric-value" id="rt_activeUsers">—</div>
+        </div>
+        <div class="metric-card" style="flex:1">
+          <div class="metric-title">Active Sessions</div>
+          <div class="metric-value" id="rt_activeSessions">—</div>
+        </div>
+        <div class="metric-card" style="flex:1">
+          <div class="metric-title">Page Views (5m)</div>
+          <div class="metric-value" id="rt_currentPageViews">—</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h3>Recent Orders</h3>
+      <div id="ordersError" class="error" style="display:none"></div>
+      <div style="overflow:auto">
+        <table>
+          <thead>
+            <tr>
+              <th>Order #</th>
+              <th>User</th>
+              <th>Items</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Placed</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="ordersBody">
+            <tr><td colspan="7">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h3>API Status</h3>
+      <div id="apiStatus">Checking…</div>
+    </section>
+  </main>
+
+  <script>
+    const els = {
+      m_pageViews: document.getElementById('m_pageViews'),
+      m_uniqueVisitors: document.getElementById('m_uniqueVisitors'),
+      m_sessions: document.getElementById('m_sessions'),
+      m_conversions: document.getElementById('m_conversions'),
+      rt_activeUsers: document.getElementById('rt_activeUsers'),
+      rt_activeSessions: document.getElementById('rt_activeSessions'),
+      rt_currentPageViews: document.getElementById('rt_currentPageViews'),
+      ordersBody: document.getElementById('ordersBody'),
+      ordersError: document.getElementById('ordersError'),
+      apiStatus: document.getElementById('apiStatus'),
+      apiBaseUrl: document.getElementById('apiBaseUrl'),
+      authToken: document.getElementById('authToken'),
+      saveSettings: document.getElementById('saveSettings'),
+      settingsSaved: document.getElementById('settingsSaved')
+    };
+
+    function getSettings() {
+      return {
+        apiBase: localStorage.getItem('API_BASE_URL') || '/api',
+        token: localStorage.getItem('ADMIN_BEARER_TOKEN') || ''
+      };
+    }
+
+    function saveSettings(apiBase, token) {
+      localStorage.setItem('API_BASE_URL', apiBase);
+      localStorage.setItem('ADMIN_BEARER_TOKEN', token);
+      els.settingsSaved.style.display = 'inline';
+      setTimeout(() => { els.settingsSaved.style.display = 'none'; }, 1500);
+    }
+
+    function authHeaders() {
+      const { token } = getSettings();
+      const headers = { 'Content-Type': 'application/json' };
+      if (token) headers['Authorization'] = 'Bearer ' + token;
+      return headers;
+    }
+
+    async function getJSON(path) {
+      const { apiBase } = getSettings();
+      const res = await fetch(apiBase + path, { headers: authHeaders() });
+      if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
+      return res.json();
+    }
+
+    async function putJSON(path, body) {
+      const { apiBase } = getSettings();
+      const res = await fetch(apiBase + path, { method: 'PUT', headers: authHeaders(), body: JSON.stringify(body) });
+      if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
+      return res.json();
+    }
+
+    function fmtCurrency(num) {
+      if (typeof num !== 'number') return '—';
+      return new Intl.NumberFormat(undefined, { style: 'currency', currency: 'USD' }).format(num);
+    }
+
+    async function loadDashboard() {
+      try {
+        const data = await getJSON('/analytics/admin/dashboard?period=7d');
+        els.m_pageViews.textContent = data.pageViews ?? '0';
+        els.m_uniqueVisitors.textContent = data.uniqueVisitors ?? '0';
+        els.m_sessions.textContent = data.sessions ?? '0';
+        els.m_conversions.textContent = data.conversions ?? '0';
+        els.apiStatus.textContent = 'OK';
+      } catch (e) {
+        els.apiStatus.textContent = 'Analytics error: ' + e.message + ' (Check API base URL and token)';
+      }
+    }
+
+    async function loadRealtime() {
+      try {
+        const rt = await getJSON('/analytics/admin/realtime');
+        els.rt_activeUsers.textContent = rt.activeUsers ?? '0';
+        els.rt_activeSessions.textContent = rt.activeSessions ?? '0';
+        els.rt_currentPageViews.textContent = rt.currentPageViews ?? '0';
+      } catch (e) {
+        els.rt_activeUsers.textContent = '—';
+        els.rt_activeSessions.textContent = '—';
+        els.rt_currentPageViews.textContent = '—';
+      }
+    }
+
+    async function loadRecentOrders() {
+      els.ordersError.style.display = 'none';
+      try {
+        const res = await getJSON('/orders/admin/all?limit=10');
+        const rows = (res.orders || []).map(o => {
+          const itemCount = Array.isArray(o.items) ? o.items.reduce((s, it) => s + (it.quantity||0), 0) : 0;
+          const userName = o.userId && (o.userId.firstName || o.userId.lastName) ? `${o.userId.firstName||''} ${o.userId.lastName||''}`.trim() : (o.userId?.email || '—');
+          const total = o.pricing?.total ?? 0;
+          const placed = o.createdAt ? new Date(o.createdAt).toLocaleString() : '—';
+          const status = (o.status || '').toString().toLowerCase();
+          return `
+            <tr>
+              <td>${o.orderNumber || o._id}</td>
+              <td>${userName}</td>
+              <td>${itemCount}</td>
+              <td>${fmtCurrency(total)}</td>
+              <td><span class="status">${status}</span></td>
+              <td>${placed}</td>
+              <td class="action">
+                <select data-oid="${o._id}">
+                  <option value="pending" ${status==='pending'?'selected':''}>pending</option>
+                  <option value="confirmed" ${status==='confirmed'?'selected':''}>confirmed</option>
+                  <option value="processing" ${status==='processing'?'selected':''}>processing</option>
+                  <option value="shipped" ${status==='shipped'?'selected':''}>shipped</option>
+                  <option value="delivered" ${status==='delivered'?'selected':''}>delivered</option>
+                  <option value="cancelled" ${status==='cancelled'?'selected':''}>cancelled</option>
+                </select>
+                <button data-update="${o._id}">Update</button>
+              </td>
+            </tr>`
+        }).join('');
+        els.ordersBody.innerHTML = rows || '<tr><td colspan="7">No orders</td></tr>';
+      } catch (e) {
+        els.ordersError.textContent = 'Orders error: ' + e.message + ' (Admin auth required)';
+        els.ordersError.style.display = 'block';
+        els.ordersBody.innerHTML = '<tr><td colspan="7">—</td></tr>';
+      }
+    }
+
+    async function handleUpdateClick(e) {
+      const id = e.target.getAttribute('data-update');
+      if (!id) return;
+      const select = document.querySelector(`select[data-oid="${id}"]`);
+      if (!select) return;
+      const newStatus = select.value;
+      try {
+        await putJSON(`/orders/admin/${id}/status`, { status: newStatus });
+        await loadRecentOrders();
+        alert('Status updated');
+      } catch (err) {
+        alert('Update failed: ' + err.message);
+      }
+    }
+
+    function init() {
+      const { apiBase, token } = getSettings();
+      els.apiBaseUrl.value = apiBase;
+      els.authToken.value = token;
+      els.saveSettings.onclick = () => saveSettings(els.apiBaseUrl.value.trim() || '/api', els.authToken.value.trim());
+
+      loadDashboard();
+      loadRealtime();
+      loadRecentOrders();
+      setInterval(loadRealtime, 10000);
+      document.body.addEventListener('click', handleUpdateClick);
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
+
+

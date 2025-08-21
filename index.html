@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your's Library</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <header>
+    <h1>Your's Library</h1>
+    <p>Enhance focus and productivity with timed study sessions</p>
+    <button id="darkModeToggle">🌙 Dark Mode</button>
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="book.html">Books</a>
+    <a href="https://ndl.iitkgp.ac.in/">Resources</a>
+    <a href='about.html'>About Us</a>
+  </nav>
+
+  <main>
+    <!-- Marquee Section -->
+    <div class="marquee">
+      <marquee behavior="scroll" direction="left">
+        Explore our new collection of Hindi books for literature, history, geography, and more! Get your favorite books now!
+      </marquee>
+    </div>
+
+    <!-- Home Section -->
+    <section id="home" class="section">
+      <h2>Welcome to Your's Library</h2>
+      <p>Explore our collection of books and resources to enrich your knowledge.</p>
+    </section>
+
+    <section id="quoteSection" class="section">
+      <p id="quoteText">"A reader lives a thousand lives before he dies." – George R.R. Martin</p>
+    </section>        
+
+    <!-- Books Section -->
+    <section id="books" class="section">
+      <h2>Books for Purchase</h2>
+      <div class="book-list">
+        <!-- English Books -->
+        <div class="book-item">
+          <img src="https://m.media-amazon.com/images/I/51Q5d1xFWbL._AC_UY436_FMwebp_QL65_.jpg" alt="The Great Gatsby">
+          <h3>The Great Gatsby</h3>
+          <p>by F. Scott Fitzgerald</p>
+          <a href="https://www.amazon.com/dp/0743273567" class="btn">Buy Now</a>
+        </div>
+        
+        <div class="book-item">
+          <img src="https://m.media-amazon.com/images/I/81F90H7hnML._AC_UY436_FMwebp_QL65_.jpg" alt="Atomic Habits">
+          <h3>Atomic Habits</h3>
+          <p>by James Clear</p>
+          <a href="https://www.amazon.com/dp/0061120081" class="btn">Buy Now</a>
+        </div>
+
+        <!-- Hindi Books -->
+        <div class="book-item">
+          <img src="https://m.media-amazon.com/images/I/61rmVPd8+5L._AC_UY436_FMwebp_QL65_.jpg" alt="Indian History">
+          <h3>Indian History</h3>
+          <p>by Manohar Pandey</p>
+          <br>
+          <a href="https://www.amazon.in/dp/0143423740" class="btn">Buy Now</a>
+        </div>
+
+        <div class="book-item">
+          <img src="https://m.media-amazon.com/images/I/81Z7IuyxQ6L._AC_UL640_FMwebp_QL65_.jpg" alt="प्रेमचंद की कहानियाँ">
+          <h3>प्रेमचंद की कहानियाँ</h3>
+          <p>by Munshi Premchand</p>
+          <a href="https://www.amazon.in/dp/8173768042" class="btn">Buy Now</a>
+        </div>
+
+        <div class="book-item">
+          <img src="https://m.media-amazon.com/images/I/91ECrVGc70L._AC_UY436_FMwebp_QL65_.jpg" alt="श्रीरामचरितमानस">
+          <h3>श्रीरामचरितमानस</h3>
+          <p>by Tulsidas</p>
+          <a href="https://www.amazon.in/dp/8173768042" class="btn">Buy Now</a>
+        </div>
+
+        <!-- Add more books as necessary -->
+      </div>
+    </section>
+
+    <!-- Pomodoro Timer Section -->
+    <section id="pomodoro" class="section"> 
+      <h2>Set Pomodoro Timer And Go on Reading!</h2>
+      <div id="pomodoro-container" style="display: flex; justify-content: space-between;">
+        <div id="file-upload" style="border: 3px solid rgb(101, 5, 5); padding: 10px; width: 45%;">
+          <h3><b>Upload and Read File</b></h3>
+          <input type="file" id="file-input">
+          <div id="file-content" style="border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: auto; display: flex; justify-content: center; align-items: center;">
+            No file uploaded.
+          </div>
+        </div>
+        <div id="timer" style="border: 3px solid rgb(101, 5, 5); padding: 10px; width: 45%;">
+          <h5>"Boost your productivity with the Pomodoro Technique - a focused approach to learning, one step at a time, because even the smallest effort leads to great achievements."</h5>
+          <div id="time">25:00</div>
+          <input type="number" id="minutes" placeholder="Enter Minutes" min="1" max="60">
+          <button id="start">Start</button>
+          <button id="reset">Reset</button>
+          <div id="progress-container">
+            <div id="progress-bar"></div>
+          </div>
+          <!-- Add audio element for sound functionality -->
+          <audio id="alarm-sound" src="alarm sound.wav" preload="auto"></audio>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section class="contact-us">
+      <h3>Contact Us</h3>
+      <p>If you have any queries or feedback, feel free to reach out to us.</p>
+      <p>Email: <a href="mailto:support@yourlibrary.com">support@yourlibrary.com</a></p>
+      <p>Phone: +91 8432109177</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-note">
+      Made with &#x2665 from Kartikey
+      <p>&copy; 2024 Your's Library. All Rights Reserved. | Designed and Developed by Kartikey Chaturvedi</p>
+      <p>
+        Follow us on:
+        <a href="https://github.com/yourgithubusername" target="_blank"><img src="githubicon.png" alt="GitHub"></a> |
+        <a href="https://instagram.com/yourinstagramusername" target="_blank"><img src="Instagram_icon.png" alt="Instagram"></a> |
+        <a href="mailto:yourgmailaddress@gmail.com" target="_blank"><img src="gmailicon.png" alt="Gmail"></a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="index.js"></script>
+  
+</body>
+
+</html>
