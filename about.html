@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Contact</title>
+    <link rel="stylesheet" href="about.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <h1>Your's Library</h1>
+        <p>Enhance focus and productivity with timed study sessions</p>
+      </header>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="book.html">Books</a>
+        <a href="https://ndl.iitkgp.ac.in/">Resources</a>
+        <a href='about.html'>About Us</a>
+      </nav>
+
+    <!-- About Us Section -->
+    <section class="about-us">
+        <h1>About Us</h1>
+        <p class="intro">
+            Welcome to Your's Library – a digital space dedicated to enriching minds through a wide range of books, resources, and study tools. Whether you're here to discover new literature or enhance your learning, we provide a platform where knowledge meets curiosity. Explore, learn, and grow with us!
+        </p>
+        
+        <div class="mission-vision">
+            <div class="mission">
+                <h2>Our Mission</h2>
+                <p>
+                    At Your's Library, our mission is to inspire minds and foster a love for reading by providing a diverse range of books that empower knowledge and curiosity. We aim to make learning accessible, enriching, and enjoyable for everyone
+                </p>
+            </div>
+            
+            <div class="vision">
+                <h2>Our Vision</h2>
+                <p>
+                    To be a hub of knowledge and creativity, where individuals of all ages can explore, learn, and grow through the power of books and education.
+                </p>
+            </div>
+        </div>
+
+        <div class="our-team">
+            <h2>Meet Our Team</h2>
+            <div class="team-members">
+                <div class="team-member">
+                    <img src="Kartikey.jpg" alt="Team Member 1">
+                    <h3>Kartikey Chaturvedi</h3>
+                    <p>Founder & CEO</p>
+                    <p>Kartikey aims to make knowledge accessible and inspiring lifelong learning. With a passion for books and education, he strives to create a platform where curiosity and growth thrive.</p>
+                </div>
+                <!-- Add more team members as necessary -->
+            </div>
+        </div>
+    </section>
+    <!-- Feedback Form Section -->
+    <section class="feedback-form">
+        <h2>Feedback Form</h2>
+        <form id="feedback-form" action="/submit_feedback" method="post">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" placeholder="How can we improve?" required></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+        <p id="thank-you-message" style="display:none; color: green; text-align: center;">Thank you for your feedback!</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-note">
+          Made with &#x2665 from Kartikey
+          <p>&copy; 2024 Your's Library. All Rights Reserved. | Designed and Developed by Kartikey Chaturvedi</p>
+          <p>
+            Follow us on:
+            <a href="https://github.com/yourgithubusername" target="_blank"><img src="githubicon.png" alt="GitHub"></a> |
+            <a href="https://instagram.com/yourinstagramusername" target="_blank">
+              <img src="Instagram_icon.png" alt="Instagram"></a> |
+            <a href="mailto:yourgmailaddress@gmail.com" target="_blank"><img src="gmailicon.png" alt="Gmail"></a>
+          </p>
+        </div>
+      </footer>
+
+    <script src="about.js"></script>
+    <script>
+        document.getElementById('feedback-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            // Display thank you message
+            document.getElementById('thank-you-message').style.display = 'block';
+            // Reset form values
+            this.reset();
+        });
+    </script>
+</body>
+</html>
