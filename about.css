@@ -1,0 +1,253 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(90deg,#7c1604, #2575fc);
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #7c1604;
+    font-size: 18px;
+    font-weight: bolder;
+}
+  
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    padding: 10px 15px;
+}
+  
+nav a:hover {
+    background-color: #9e290e;;
+    border-radius: 5px; /* Smooth corners for the hover effect */
+}
+
+/* About Us Section */
+.about-us {
+    padding: 20px;
+    text-align: center;
+}
+
+.about-us h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #7c1604;
+}
+
+.about-us .intro {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.mission-vision {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.mission, .vision {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 45%;
+}
+
+.mission h2, .vision h2 {
+    color:#7c1604;
+    margin-bottom: 10px;
+}
+
+.mission p, .vision p {
+    color: #555;
+}
+
+.our-team {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.our-team h2 {
+    color:#7c1604;
+    margin-bottom: 20px;
+}
+
+.team-members {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.team-member {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 200px;
+}
+
+.team-member img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.team-member h3 {
+    margin: 0;
+    color:#7c1604;
+}
+
+.team-member p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.team-member p:last-child {
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.feedback-form {
+    margin: 20px 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-form h2 {
+    margin-bottom: 15px;
+    color: maroon;
+    text-align: center;
+}
+
+.feedback-form .form-group {
+    margin-bottom: 15px;
+}
+
+.feedback-form .form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.feedback-form .form-group input,
+.feedback-form .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.feedback-form .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff; /* Ensure background is white */
+    color: #333; /* Ensure text color is dark */
+}
+
+.feedback-form .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff; /* Ensure background is white */
+    color: #333; /* Ensure text color is dark */
+}
+
+.feedback-form .form-group input[type="submit"] {
+    width: auto;
+    background-color: maroon;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 5px; /* Add gap between stars */
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 2em;
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.2s; /* Smooth transition for color change */
+}
+
+.star-rating input[type="radio"]:checked ~ label {
+    color: gold;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: gold;
+}
+
+footer {
+    text-align: center;
+    background: #333;
+    color: white;
+    padding: 10px 0;
+    margin-top: 40px;
+  }
+
+.footer-note {
+    background-color: #7c1604;
+    color: white;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+.footer-note p {
+    margin: 10px 0;
+  }
+
+.footer-note a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+.footer-note img {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+  }
+
+a img{
+    border-radius: 50%;
+  }
