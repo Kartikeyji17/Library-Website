@@ -172,3 +172,92 @@ footer {
 a img{
     border-radius: 50%;
 }
+/* 📱 Responsive adjustments */
+@media (max-width: 1024px) {
+  /* shrink form container on tablets */
+  #d2 {
+    margin: 20px auto;
+    width: 80%;
+    height: auto;
+  }
+
+  .form-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .form-group label {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .form-group input, 
+  .form-group textarea {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  /* stack FAQ and Cart vertically */
+  .content-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #faq, #cart-details, #d2 {
+    width: 90%;
+    margin: 15px auto;
+    display: block;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+
+  .more-books-button {
+    width: 60%;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #d2 {
+    width: 95%;
+    padding: 15px;
+    font-size: 0.9rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 0.9rem;
+    height: auto;
+  }
+
+  input[type="submit"] {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .faq-item h3,
+  .cart-item h3 {
+    font-size: 1rem;
+  }
+
+  .faq-item p,
+  .cart-item p {
+    font-size: 0.85rem;
+  }
+
+  .more-books-button {
+    width: 90%;
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  footer,
+  .footer-note {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
+}
+
