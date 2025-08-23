@@ -353,4 +353,112 @@ footer {
 
 a img{
     border-radius: 50%;
+
   }
+
+/* ============================= */
+/* 📱 Mobile Responsive Styling  */
+/* ============================= */
+
+/* General adjustment for smaller screens */
+@media (max-width: 768px) {
+  header {
+    padding: 15px 10px;
+    font-size: 1rem;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+  }
+
+  nav a {
+    margin: 8px 0;
+    padding: 8px 12px;
+    display: block;
+  }
+
+  .section, 
+  #quoteSection,
+  .book-item {
+    width: 100%;
+    margin: 10px 0;
+    padding: 15px;
+  }
+
+  .book-list {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .book-item {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  #resources ul {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  #resources ul li {
+    width: 80px;
+    height: 80px;
+    font-size: 0.8rem;
+  }
+
+  #timer input {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  #darkModeToggle {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+}
+
+/* For very small screens (phones <480px) */
+@media (max-width: 480px) {
+  header {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  nav a {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  .book-item h3 {
+    font-size: 1rem;
+  }
+
+  .book-item p {
+    font-size: 0.9rem;
+  }
+
+  #timer {
+    font-size: 1.5rem;
+  }
+
+  #timer button {
+    width: 100%;
+    max-width: 200px;
+    margin: 8px auto;
+    display: block;
+  }
+
+  footer, .footer-note {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}
