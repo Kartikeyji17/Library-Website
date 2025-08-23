@@ -251,3 +251,84 @@ footer {
 a img{
     border-radius: 50%;
   }
+
+/* Existing styles remain same above ... */
+
+/* ========== Mobile Responsive Design ========== */
+@media (max-width: 768px) {
+    /* Navigation */
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav a {
+        display: block;
+        margin: 10px 0;
+    }
+
+    /* Mission & Vision section */
+    .mission-vision {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .mission, .vision {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    /* Team section */
+    .team-members {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .team-member {
+        width: 80%;
+    }
+
+    /* Feedback form */
+    .feedback-form {
+        margin: 15px;
+        padding: 15px;
+    }
+
+    .feedback-form .form-group input,
+    .feedback-form .form-group textarea,
+    .feedback-form .form-group select {
+        font-size: 1rem;
+    }
+
+    /* Headings */
+    h1, h2 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.3rem;
+    }
+
+    nav a {
+        font-size: 0.95rem;
+        padding: 8px;
+    }
+
+    .team-member {
+        width: 95%;
+    }
+
+    .feedback-form h2 {
+        font-size: 1.2rem;
+    }
+
+    .star-rating label {
+        font-size: 1.5em;
+    }
+}
