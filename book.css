@@ -271,4 +271,136 @@ a img{
   display: flex; 
   justify-content: center; 
   align-items: center;
+
+}
+
+/* ============================= */
+/* 📱 Mobile Responsive Styling  */
+/* ============================= */
+
+/* Tablets and smaller screens */
+@media (max-width: 768px) {
+  header {
+    padding: 20px 10px;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+  }
+
+  nav a {
+    margin: 8px 0;
+    padding: 8px 12px;
+    display: block;
+  }
+
+  .search-sort-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #searchBar {
+    width: 90%;
+    font-size: 16px;
+  }
+
+  #sortOptions {
+    width: 60%;
+    font-size: 16px;
+  }
+
+  .book-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .book {
+    width: 90%;
+    height: auto; /* let height adjust naturally */
+  }
+
+  .book img {
+    height: auto !important;
+    max-height: 300px; /* prevents huge images */
+  }
+
+  .book-title {
+    font-size: 1rem;
+  }
+
+  .book-author,
+  .book-price {
+    font-size: 0.9rem;
+  }
+
+  #cart-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  #cart-icon img {
+    width: 25px;
+    height: 25px;
+  }
+
+  footer,
+  .footer-note {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}
+
+/* Very small screens (phones <480px) */
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.4rem;
+  }
+
+  header p {
+    font-size: 0.9rem;
+  }
+
+  nav a {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  h1, h2 {
+    font-size: 1.2rem;
+  }
+
+  .book-title {
+    font-size: 0.95rem;
+  }
+
+  .book-author,
+  .book-price {
+    font-size: 0.85rem;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 200px;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+
+  #cart-icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  #cart-icon img {
+    width: 22px;
+    height: 22px;
+  }
+
+  #cart-count {
+    width: 18px;
+    height: 18px;
+    font-size: 0.75rem;
+  }
 }
